@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApMobProj.Views.PairDetailsPage"
+             xmlns:model="clr-namespace:ApMobProj.Models" 
+             Title="Details">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="{Binding Name}" FontSize="40"/>
+        <Label Text="Phone number:" FontSize="Medium" />
+        <Label Text="{Binding PhoneNumber}" FontSize="25"/>
+        <Label Text="Interests:" FontSize="Medium" />
+        <CollectionView x:Name="PairsListView"
+                ItemsSource="{Binding interests}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:Interest">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="25" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+
+</ContentPage>

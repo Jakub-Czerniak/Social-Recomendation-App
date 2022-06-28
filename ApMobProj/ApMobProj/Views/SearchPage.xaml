@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApMobProj.Views.SearchPage"
+             xmlns:model="clr-namespace:ApMobProj.Models" 
+             xmlns:local="clr-namespace:ApMobProj.ViewModels"
+             Title="Search">
+
+
+        <RefreshView x:DataType="local:SearchViewModel" Command="{Binding LoadUser}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <StackLayout Spacing="20" Padding="15">
+            
+            <Label Text="{Binding Name}" FontSize="40"/>
+            <Label Text="Interests:" FontSize="Medium" />
+            <CollectionView x:Name="SearchListView"
+                ItemsSource="{Binding Interests}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:Interest">
+                            <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="25" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal" Spacing="10" Padding="10,10,10,15" >
+                <Button HorizontalOptions="FillAndExpand" Text="Like" BackgroundColor="Green" Command="{Binding YTapped}" />
+                <Button HorizontalOptions="FillAndExpand" Text="Nope" BackgroundColor="DarkRed" Command="{Binding NTapped}"/>
+            </StackLayout>
+        </StackLayout>
+    </RefreshView>
+</ContentPage>

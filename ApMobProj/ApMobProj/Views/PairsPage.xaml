@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApMobProj.Views.PairsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:ApMobProj.ViewModels"  
+             xmlns:model="clr-namespace:ApMobProj.Models"  
+             x:Name="BrowsePairsPage">
+
+    <RefreshView x:DataType="local:PairsViewModel" Command="{Binding LoadPairsCommand}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="PairsListView"
+                ItemsSource="{Binding Pairs}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:User">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="40" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:PairsViewModel}}, Path=PairTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

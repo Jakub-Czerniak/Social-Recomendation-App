@@ -1,0 +1,6 @@
+﻿CREATE TABLE users
+(
+	ID INT IDENTITY (1,1) PRIMARY KEY,
+	name VARCHAR (255) NOT NULL,
+	phone_number VARCHAR (9) NOT NULL
+)
